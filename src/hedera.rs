@@ -21,8 +21,8 @@ pub fn create_transfer_transaction(token_id: String,
     TransferTransaction::new()
         .node_account_ids(vec![AccountId::from(3)])
         .transaction_id(TransactionId::generate(payer_id))
-        .token_transfer(token_id, owner_id, -token_amount)
-        .token_transfer(token_id, payer_id, token_amount)
+        .token_transfer(token_id, owner_id, -100)
+        .token_transfer(token_id, payer_id, 100)
         .freeze_with(&*CLIENT).unwrap().sign_with_operator(&CLIENT).unwrap()
         .to_bytes()
 }
