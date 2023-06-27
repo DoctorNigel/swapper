@@ -35,7 +35,7 @@ pub async fn create_swap(opts: Option<Query<SwapRequest>>, Extension(state): Ext
 
     let transaction = create_transfer_transaction(
         opts.token_id, opts.account_id, &SETTINGS.operator_id, opts.amount,
-        opts.amount, 8
+        opts.amount, 9
     );
 
     let checked_trans = match transaction {
