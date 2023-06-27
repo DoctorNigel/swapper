@@ -16,13 +16,15 @@ pub fn create_transfer_transaction(token_id: String,
     let owner_id = AccountId::from_str(owner_account)?;
 
     println!("Token amount is: {}", token_amount);
-    println!("Token id is: {}", token_id);
+    println!("{}", token_amount.pow(decimals));
 
     TransferTransaction::new()
         .node_account_ids(vec![AccountId::from(3)])
         .transaction_id(TransactionId::generate(payer_id))
-        .token_transfer(token_id, owner_id, -100)
-        .token_transfer(token_id, payer_id, 100)
+        .token_transfer(token_id, owner_id, -token_amount.pow(decimals))
+        .token_transfer(token_id, payer_id, token_amount.pow(decimals))
+        .hbar_transfer(owner_id, Hbar::new(hbar_amount))
+        .hbar_transfer(payer_id, Hbar::new(-hbar_amount))
         .freeze_with(&*CLIENT).unwrap().sign_with_operator(&CLIENT).unwrap()
         .to_bytes()
 }
