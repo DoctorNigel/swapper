@@ -18,10 +18,9 @@ pub fn create_transfer_transaction(token_id: String,
     TransferTransaction::new()
         .node_account_ids(vec![AccountId::from(3)])
         .transaction_id(TransactionId::generate(payer_id))
-        .token_transfer_with_decimals(token_id, owner_id, -token_amount, decimals)
-        .token_transfer_with_decimals(token_id, payer_id, token_amount, decimals)
-        .hbar_transfer(
-            owner_id, Hbar::new(hbar_amount))
+        .token_transfer(token_id, owner_id, -token_amount)
+        .token_transfer(token_id, payer_id, token_amount)
+        .hbar_transfer(owner_id, Hbar::new(hbar_amount))
         .hbar_transfer(payer_id, Hbar::new(-hbar_amount))
         .freeze_with(&*CLIENT).unwrap().sign_with_operator(&CLIENT).unwrap()
         .to_bytes()

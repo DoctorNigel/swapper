@@ -15,7 +15,6 @@ RUN cargo install cargo-chef
 COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 
-
 FROM rust as builder
 
 ENV USER=web
