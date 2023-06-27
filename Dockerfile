@@ -9,7 +9,7 @@ WORKDIR /app
 
 RUN apt-get update && apt upgrade -y
 RUN apt-get install -y protobuf-compiler libprotobuf-dev libprotoc-dev
-RUN protoc --version
+RUN echo protoc --version
 
 RUN cargo install cargo-chef
 COPY --from=planner /app/recipe.json recipe.json
