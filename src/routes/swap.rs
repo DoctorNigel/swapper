@@ -33,9 +33,10 @@ pub async fn create_swap(opts: Option<Query<SwapRequest>>, Extension(state): Ext
         }))
     }
 
+    let hedera_client = &state.hedera_client;
     let transaction = create_transfer_transaction(
         opts.token_id, opts.account_id, &SETTINGS.operator_id, opts.amount,
-        opts.amount, 9
+        opts.amount, 8, hedera_client
     );
 
     let checked_trans = match transaction {

@@ -2,12 +2,8 @@ use std::str::FromStr;
 use hedera::{
   Client, AccountId, PrivateKey
 };
-use lazy_static::lazy_static;
 use crate::settings::SETTINGS;
 
-lazy_static! {
-  pub static ref CLIENT: Client = init_hedera_client();
-}
 
 pub fn init_hedera_client() -> Client {
   let client = Client::for_name(SETTINGS.environment.as_str()).expect("False environment variable for Hedera Client");
