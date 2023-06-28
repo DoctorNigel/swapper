@@ -6,11 +6,6 @@
 app = "swapper"
 primary_region = "ord"
 
-[env]
-  ENVIRONMENT = "testnet"
-  OPERATOR_ID = "0.0.3488114"
-  SWAP_ENABLED = "true"
-
 [http_service]
   internal_port = 3000
   force_https = true
